@@ -1,5 +1,12 @@
 <?php
 
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+$host = $url["knockknockdb.ceisn90mxwfd.ap-southeast-1.rds.amazonaws.com"];
+$username = $url["knockknock_db"];
+$password = $url["Passw0rd!"];
+$database = substr($url["knockknock_dev"], 1);
+
 return [
 
     /*
@@ -41,11 +48,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'knockknockdb.ceisn90mxwfd.ap-southeast-1.rds.amazonaws.com'),
+            'host' => env('DB_HOST', $host),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'knockknock_dev'),
-            'username' => env('DB_USERNAME', 'knockknock_db'),
-            'password' => env('DB_PASSWORD', 'Passw0rd!'),
+            'database' => env('DB_DATABASE', $database),
+            'username' => env('DB_USERNAME', $username),
+            'password' => env('DB_PASSWORD', $password),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
